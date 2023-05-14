@@ -20,6 +20,6 @@ url_launcher: ^6.1.11 - to launch website in external browser
 
 
 ENJOY!
-****************************************************************************************************
+******************************************************************************************************
 
 PS I know, code structure could be better but I am working on it, stay tuned for next app versions :)
