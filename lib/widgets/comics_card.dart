@@ -85,7 +85,7 @@ Widget buildImage(Image image, String title, int index, String description,
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) =>
-                detailsPage(image, title, description, website, writer)));
+                DetailsPage(image, title, description, website, writer)));
       },
       child: Stack(
         children: [

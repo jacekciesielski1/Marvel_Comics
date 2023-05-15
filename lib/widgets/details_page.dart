@@ -3,25 +3,26 @@ import 'package:url_launcher/url_launcher.dart';
 
 //page for displaying comics details after tapping on comics cover
 //constructed with values passed from json
-class detailsPage extends StatelessWidget {
+class DetailsPage extends StatelessWidget {
   final Image image;
   final String title;
   final String description;
-  //it fetches list of websites connected with comic and later will reurn detail website if list is not empty
+  //it passes list of websites connected with comic and later will reurn detail website if list is not empty
   final List website;
   //same as above but with writers
   final List writer;
 
   //constructor
-  detailsPage(
+  DetailsPage(
       this.image, this.title, this.description, this.website, this.writer);
 
   // functions for launching website in browser
   launchMarvelWebsite(Uri url) async {
-    if (await canLaunchUrl(url)) {
+    try {
       await launchUrl(url, mode: LaunchMode.externalApplication);
-    } else {
-      throw "Could not launch url";
+    }
+     catch (error) {
+      print(error);
     }
   }
 
