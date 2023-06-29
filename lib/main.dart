@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
-import 'screens/main_screen.dart';
-import 'package:provider/provider.dart';
-import 'package:marvel_comics/models/post_api_service.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'features/comics_app/presentation/bloc/comics_bloc.dart';
+import 'injection_container.dart';
+import 'features/comics_app/presentation/pages/main_page.dart';
+import 'injection_container.dart' as di;
 
-void main() {
+void main() async {
   //lets go
-  runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    //returning provider that helps to pass Chopper resources(api service)
-    return Provider(
-      create: (_) => PostApiService.create(),
-      dispose: (_, PostApiService service) => service.client.dispose(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        //main scrren with two pages navigated by bottomnavigationbar
-        home: MainScreen(),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: BlocProvider(
+        create: (context) => sl<ComicsBloc>(),
+        child: const MainPage(),
       ),
     );
   }
